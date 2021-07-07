@@ -10,9 +10,13 @@
         Crie ou edite seu contato abaixo.
       </p>
 
-      <% include('includes/messages') %>
+      <%- include('includes/messages') %>
 
-      <form class="border p-3" action="/contato/register" method="POST">
+      <% if(contato._id) { %>
+        <form class="border p-3" action="/contato/edit/<%= contato._id %>" method="POST">
+      <% } else { %>
+        <form class="border p-3" action="/contato/register" method="POST">
+      <% } %>
         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
         <div class="mb-3">
           <label class="form-label">Nome</label>
