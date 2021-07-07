@@ -1,31 +1,65 @@
 <%- include('includes/head') %>
-<%- include('includes/nav') %>
+  <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8 my-3">
-      <h1 class="text-center">Agenda</h1>
-      <p class="text-center lead">
-        Seus contatos estão abaixo.
-      </p>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 my-3">
+          <h1 class="text-center">Agenda</h1>
+          <p class="text-center lead">
+            Seus contatos estão abaixo.
+          </p>
 
-      <%- include('includes/messages') %>
+          <%- include('includes/messages') %>
 
-      <div class="responsive-table">
-        <table class="table text-center my-3">
-          <tr>
-            <td>Luiz</td>
-            <td>Otávio</td>
-            <td>11111111</td>
-            <td>luiz-otavio@gmail.com</td>
-          </tr>
-        </table>
+            <% if(contatos.length> 0) { %>
+              <div class="responsive-table">
+                <table class="table table-striped text-center my-3">
+                  <tr>
+                    <th class="table-dark">Nome</th>
+                    <th class="table-dark">Sobrenome</th>
+                    <th class="table-dark">Email</th>
+                    <th class="table-dark">Telefone</th>
+                    <th class="table-dark"></th>
+                    <th class="table-dark"></th>
+                  </tr>
+                  <% contatos.forEach(contato=> { %>
+                    <tr>
+                      <td class="border">
+                        <%= contato.nome %>
+                      </td>
+                      <td class="border">
+                        <%= contato.sobrenome %>
+                      </td>
+                      <% if(!contato.email) { %>
+                        <td class="border text-danger">
+                          Contato sem email
+                          <% } else { %>
+                        <td class="border">
+                          <%= contato.email %>
+                            <% } %>
+                        </td>
+                        <% if(!contato.telefone) { %>
+                          <td class="border text-danger">
+                            Contato sem telefone
+                            <% } else { %>
+                          <td class="border">
+                            <%= contato.telefone %>
+                              <% } %>
+                          </td>
+                          <td><a class="btn btn-primary" href="/contato/index/<%= contato._id %>">Editar</a></td>
+                          <td><a class="btn btn-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+                    </tr>
+                    <% });%>
+                </table>
+              </div>
+              <% } else { %>
+                <h4 class="text-center p-3 rounded ">Não existem contatos na sua agenda</h4>
+                <% } %>
+
+        </div>
+        <div class="col-lg-2"></div>
       </div>
-
     </div>
-    <div class="col-lg-2"></div>
-  </div>
-</div>
 
-<%- include('includes/footer') %>
+    <%- include('includes/footer') %>
