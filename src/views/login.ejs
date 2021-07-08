@@ -14,12 +14,12 @@
 
       <div class="row">
 
-        <div class="col-lg border border-end-0 rounded-start p-3">
+        <div class="col-lg my-5 border rounded-start p-3">
           <h4 class="text-center">Faça seu cadastro</h4>
           <div class="alert alert-primary" role="alert">
             Se você ainda não tem uma conta, preencha o formulário abaixo:
           </div>
-          <form action="/login/register" method="POST">
+          <form class="form-cadastro" action="/login/register" method="POST">
             <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="mb-3">
               <label class="form-label">Seu e-mail:</label>
@@ -32,12 +32,12 @@
             <button type="submit" class="btn btn-primary">Criar minha conta</button>
           </form>
         </div>
-        <div class="col-lg border rounded-end">
+        <div class="col-lg my-5 ms-4 border rounded-end">
           <h4 class="text-center mt-3">Faça login</h4>
           <div class="alert alert-primary" role="alert">
             Se você tem uma conta, faça login abaixo:
           </div>
-          <form action="/login/login" method="POST">
+          <form class="form-login" action="/login/login" method="POST">
             <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="mb-3">
               <label class="form-label mt-4">Seu e-mail:</label>
